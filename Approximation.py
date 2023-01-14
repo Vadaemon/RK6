@@ -31,3 +31,29 @@ def get_b(x, y):
     return np.array([
         sum(y), sum(y * x), sum(y * x ** 2), sum(y * x ** 3)
     ])
+
+
+def get_coefficients(A, B):
+    return np.dot(B, np.linalg.inv(A))
+
+
+def show_graph(xlim, ylim, coefficients):
+    import matplotlib.pyplot as plt
+
+    x = np.linspace(*xlim, (abs(xlim[0]) + abs(xlim[1])) * 2)
+    y = coefficients[0] + coefficients[1] * x + + coefficients[2] * x ** 2 + coefficients[3] * x ** 3
+
+    plt.plot(x, y, label='f(x)')
+
+    # Add features to our figure
+    plt.legend()
+    plt.grid(True, linestyle='-')
+    plt.xlim(xlim)
+    plt.ylim(ylim)
+
+    plt.title('f(x) = a0 + a1x + a2x^2 + a3x^3')
+    plt.xlabel('x-axis')
+    plt.ylabel('y-axis')
+
+    # Show plot
+    plt.show()
